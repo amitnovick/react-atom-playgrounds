@@ -6,17 +6,20 @@ import stateAtom from './stateAtom.js';
 const Button = () => {
   const { clickCount } = useAtom(stateAtom);
   return (
-    <input
-      type="button"
-      value="Pickle me"
-      style={clickCount >= 10 ? { color: 'palevioletred' } : { color: 'green' }}
-      onClick={() =>
-        swap(stateAtom, state => ({
-          ...state,
-          clickCount: state.clickCount + 1
-        }))
-      }
-    />
+    <div>
+      <input
+        type="button"
+        value="Pickle me"
+        style={clickCount >= 10 ? { color: 'red' } : { color: 'green' }}
+        onClick={() =>
+          swap(stateAtom, state => ({
+            ...state,
+            clickCount: state.clickCount + 1
+          }))
+        }
+      />
+      <p>Hello there</p>
+    </div>
   );
 };
 

@@ -1,8 +1,11 @@
 import { Atom, addChangeHandler } from '@dbeining/react-atom';
-import moment from 'moment';
 
-const stateAtom = Atom.of({ clickCount: 0, time: moment().format('hh:mm:ss') });
+const stateAtom = Atom.of({ clickCount: 0 });
 
+/*
+ * Courtesy of FlorianRappl
+ * See: https://github.com/derrickbeining/react-atom/issues/47
+ */
 addChangeHandler(stateAtom, 'debugging', ({ current, previous }) => {
   const action = new Error().stack
     .split('\n')[6]
