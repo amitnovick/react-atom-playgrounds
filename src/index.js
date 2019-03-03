@@ -9,6 +9,7 @@ export const App = () => {
   return (
     <div>
       <h2>Button Smasher</h2>
+      <p>Check your browser's web console for updates!</p>
       <Button />
     </div>
   );
