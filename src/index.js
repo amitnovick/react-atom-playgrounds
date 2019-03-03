@@ -1,37 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Atom, useAtom, swap, deref } from '@dbeining/react-atom';
+import {
+  Atom,
+  useAtom,
+  swap,
+  deref,
+  addChangeHandler
+} from '@dbeining/react-atom';
 import moment from 'moment';
 
 import Button from './Button';
-import clickCountAtom from './clickCountAtom';
-/////////////////////// APP STATE /////////////////////////
-/**
- * An atom can be constructed with `Atom.of`.
- * The only way to get the value of an atom is with the `useAtom`
- * hook or `deref`
- */
-const timeAtom = Atom.of(moment().format('hh:mm:ss'));
+import stateAtom from './stateAtom';
 
 /////////////////////// EFFECTS /////////////////////
-const timeoutReference = window.setInterval(() =>
-  swap(timeAtom, state => moment().format('hh:mm:ss'))
-);
+// const dateTimeoutReference = window.setInterval(
+//   () =>
+//     swap(stateAtom, state => ({ ...state, time: moment().format('hh:mm:ss') })),
+//   1000
+// );
+
 ///////////////// COMPONENT  /////////////////////
 
 export const App = () => {
-  const time = useAtom(timeAtom);
-  const clickCount = useAtom(clickCountAtom);
   return (
     <div>
-      <p>Timer: {time}</p>
-      <p>Click count: {clickCount}</p>
+      <h2>Button Smasher</h2>
       <Button />
     </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// const MyDevTools = () => {
+//   const state = useAtom(stateAtom);
+//   return (
+//     <div>
+//       <p>--------- My Dev Tools: State ---------</p>
+//       <p>{JSON.stringify(state)}</p>
+//     </div>
+//   );
+// };
+
+ReactDOM.render(<App />, document.getElementById('root1'));
+// ReactDOM.render(<MyDevTools />, document.getElementById('root2'));
 
 if (module.hot) {
   module.hot.accept();
